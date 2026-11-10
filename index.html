@@ -8,17 +8,48 @@
 
     <meta
         name="description"
-        content="Nova DigiHub — Initiative numérique née à Koudougou, proposant formations, services numériques et accompagnement digital au Burkina Faso, en ligne et selon différents modes d’intervention."
-    >
-
-    <meta
-        name="keywords"
-        content="Nova DigiHub, Burkina Faso, Koudougou, formation informatique, numérique, digital, développement web, développement mobile, Canva, Excel, CV, services numériques, formation en ligne"
+        content="Nova DigiHub, initiative numérique née à Koudougou : formations, services numériques et accompagnement digital partout au Burkina Faso."
     >
 
     <meta name="author" content="Nova DigiHub">
 
+    <meta name="theme-color" content="#087fa8">
+
     <title>Nova DigiHub | Le numérique à votre portée</title>
+
+    <link rel="icon" type="image/png" href="images/logo.png">
+
+    <!-- Aperçu lors des partages (WhatsApp, Facebook, LinkedIn…) -->
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Nova DigiHub">
+    <meta property="og:title" content="Nova DigiHub | Le numérique à votre portée">
+    <meta property="og:description" content="Formations, services numériques et accompagnement digital, de Koudougou à tout le Burkina Faso.">
+
+    <!-- À COMPLÉTER une fois le nom de domaine connu, puis décommenter :
+    <link rel="canonical" href="https://VOTRE-DOMAINE/">
+    <meta property="og:url" content="https://VOTRE-DOMAINE/">
+    <meta property="og:image" content="https://VOTRE-DOMAINE/images/partage.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    -->
+
+    <!-- Données structurées pour Google -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Nova DigiHub",
+        "slogan": "Le numérique à votre portée",
+        "description": "Initiative numérique née à Koudougou proposant formations, services numériques et accompagnement digital au Burkina Faso.",
+        "telephone": "+226 56 63 03 77",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Koudougou",
+            "addressCountry": "BF"
+        },
+        "areaServed": "BF"
+    }
+    </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,7 +57,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap"
         rel="stylesheet"
     >
 
@@ -38,6 +69,9 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- Main JS (defer : exécuté après le chargement de la page) -->
+    <script src="js/script.js" defer></script>
 </head>
 
 <body>
@@ -48,14 +82,16 @@
 
     <header class="site-header">
 
-        <nav class="navbar">
+        <nav class="navbar" aria-label="Menu principal">
 
             <a href="#accueil" class="brand">
 
                 <img
                     src="images/logo.png"
-                    alt="Logo Nova DigiHub"
+                    alt=""
                     class="brand-logo"
+                    width="52"
+                    height="52"
                 >
 
                 <span class="brand-text">
@@ -75,9 +111,9 @@
 
             <!-- MENU -->
 
-            <div class="nav-menu">
+            <div class="nav-menu" id="nav-menu">
 
-                <a href="#accueil" class="nav-link active">
+                <a href="#accueil" class="nav-link active" aria-current="true">
                     Accueil
                 </a>
 
@@ -111,7 +147,7 @@
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <i class="bi bi-whatsapp"></i>
+                    <i aria-hidden="true" class="bi bi-whatsapp"></i>
                     Nous contacter
                 </a>
 
@@ -125,8 +161,9 @@
                 class="menu-toggle"
                 aria-label="Ouvrir le menu"
                 aria-expanded="false"
+                aria-controls="nav-menu"
             >
-                <i class="bi bi-list"></i>
+                <i aria-hidden="true" class="bi bi-list"></i>
             </button>
 
         </nav>
@@ -152,7 +189,7 @@
 
             <!-- Background -->
 
-            <div class="hero-background">
+            <div class="hero-background" aria-hidden="true">
 
                 <div class="hero-orb hero-orb-one"></div>
 
@@ -174,7 +211,7 @@
 
                     <div class="hero-badge">
 
-                        <span class="badge-dot"></span>
+                        <span class="badge-dot" aria-hidden="true"></span>
 
                         Une initiative née à Koudougou, tournée vers tout le Burkina Faso
 
@@ -189,11 +226,11 @@
                     </h1>
 
 
-                    <h2 class="hero-subtitle">
+                    <p class="hero-subtitle">
 
                         Apprenons à les franchir ensemble.
 
-                    </h2>
+                    </p>
 
 
                     <p class="hero-description">
@@ -214,7 +251,7 @@
                             class="btn btn-primary"
                         >
                             Découvrir nos services
-                            <i class="bi bi-arrow-right"></i>
+                            <i aria-hidden="true" class="bi bi-arrow-right"></i>
                         </a>
 
 
@@ -224,7 +261,7 @@
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <i class="bi bi-whatsapp"></i>
+                            <i aria-hidden="true" class="bi bi-whatsapp"></i>
                             Parlons de votre besoin
                         </a>
 
@@ -234,18 +271,18 @@
                     <div class="hero-trust">
 
                         <span class="trust-item">
-                            <i class="bi bi-check-circle-fill"></i>
+                            <i aria-hidden="true" class="bi bi-check-circle-fill"></i>
                             Approche pratique
                         </span>
 
                         <span class="trust-item">
-                            <i class="bi bi-check-circle-fill"></i>
+                            <i aria-hidden="true" class="bi bi-check-circle-fill"></i>
                             Accompagnement humain
                         </span>
 
                         <span class="trust-item">
-                            <i class="bi bi-check-circle-fill"></i>
-                            Initiative née à Koudougou
+                            <i aria-hidden="true" class="bi bi-check-circle-fill"></i>
+                            Modalités flexibles
                         </span>
 
                     </div>
@@ -253,9 +290,9 @@
                 </div>
 
 
-                <!-- HERO VISUAL -->
+                <!-- HERO VISUAL (décoratif : son contenu est repris plus bas) -->
 
-                <div class="hero-visual">
+                <div class="hero-visual" aria-hidden="true">
 
                     <div class="visual-glow"></div>
 
@@ -287,8 +324,11 @@
 
                             <img
                                 src="images/logo.png"
-                                alt="Nova DigiHub"
+                                alt=""
                                 class="hero-logo"
+                                width="170"
+                                height="170"
+                                fetchpriority="high"
                             >
 
                         </div>
@@ -345,7 +385,7 @@
 
                         <div class="floating-icon">
 
-                            <i class="bi bi-mortarboard"></i>
+                            <i aria-hidden="true" class="bi bi-mortarboard"></i>
 
                         </div>
 
@@ -368,7 +408,7 @@
 
                         <div class="floating-icon">
 
-                            <i class="bi bi-laptop"></i>
+                            <i aria-hidden="true" class="bi bi-laptop"></i>
 
                         </div>
 
@@ -400,7 +440,7 @@
                     Découvrir
                 </span>
 
-                <i class="bi bi-chevron-down"></i>
+                <i aria-hidden="true" class="bi bi-chevron-down"></i>
 
             </a>
 
@@ -445,12 +485,8 @@
 
                     <article class="pillar-card">
 
-                        <span class="pillar-number">
-                            01
-                        </span>
-
                         <div class="pillar-icon">
-                            <i class="bi bi-mortarboard"></i>
+                            <i aria-hidden="true" class="bi bi-mortarboard"></i>
                         </div>
 
                         <h3>
@@ -468,12 +504,8 @@
 
                     <article class="pillar-card">
 
-                        <span class="pillar-number">
-                            02
-                        </span>
-
                         <div class="pillar-icon">
-                            <i class="bi bi-headset"></i>
+                            <i aria-hidden="true" class="bi bi-headset"></i>
                         </div>
 
                         <h3>
@@ -491,12 +523,8 @@
 
                     <article class="pillar-card">
 
-                        <span class="pillar-number">
-                            03
-                        </span>
-
                         <div class="pillar-icon">
-                            <i class="bi bi-lightbulb"></i>
+                            <i aria-hidden="true" class="bi bi-lightbulb"></i>
                         </div>
 
                         <h3>
@@ -560,12 +588,8 @@
                         <div class="service-card-top">
 
                             <div class="service-icon">
-                                <i class="bi bi-pc-display"></i>
+                                <i aria-hidden="true" class="bi bi-pc-display"></i>
                             </div>
-
-                            <span class="service-number">
-                                01
-                            </span>
 
                         </div>
 
@@ -586,7 +610,7 @@
                             rel="noopener noreferrer"
                         >
                             Demander une assistance
-                            <i class="bi bi-arrow-right"></i>
+                            <i aria-hidden="true" class="bi bi-arrow-right"></i>
                         </a>
 
                     </article>
@@ -599,12 +623,8 @@
                         <div class="service-card-top">
 
                             <div class="service-icon">
-                                <i class="bi bi-palette"></i>
+                                <i aria-hidden="true" class="bi bi-palette"></i>
                             </div>
-
-                            <span class="service-number">
-                                02
-                            </span>
 
                         </div>
 
@@ -625,7 +645,7 @@
                             rel="noopener noreferrer"
                         >
                             Présenter mon projet
-                            <i class="bi bi-arrow-right"></i>
+                            <i aria-hidden="true" class="bi bi-arrow-right"></i>
                         </a>
 
                     </article>
@@ -638,12 +658,8 @@
                         <div class="service-card-top">
 
                             <div class="service-icon">
-                                <i class="bi bi-file-earmark-person"></i>
+                                <i aria-hidden="true" class="bi bi-file-earmark-person"></i>
                             </div>
-
-                            <span class="service-number">
-                                03
-                            </span>
 
                         </div>
 
@@ -664,7 +680,7 @@
                             rel="noopener noreferrer"
                         >
                             Préparer mon dossier
-                            <i class="bi bi-arrow-right"></i>
+                            <i aria-hidden="true" class="bi bi-arrow-right"></i>
                         </a>
 
                     </article>
@@ -677,12 +693,8 @@
                         <div class="service-card-top">
 
                             <div class="service-icon">
-                                <i class="bi bi-phone"></i>
+                                <i aria-hidden="true" class="bi bi-phone"></i>
                             </div>
-
-                            <span class="service-number">
-                                04
-                            </span>
 
                         </div>
 
@@ -703,7 +715,7 @@
                             rel="noopener noreferrer"
                         >
                             Développer ma présence
-                            <i class="bi bi-arrow-right"></i>
+                            <i aria-hidden="true" class="bi bi-arrow-right"></i>
                         </a>
 
                     </article>
@@ -716,12 +728,8 @@
                         <div class="service-card-top">
 
                             <div class="service-icon">
-                                <i class="bi bi-globe2"></i>
+                                <i aria-hidden="true" class="bi bi-globe2"></i>
                             </div>
-
-                            <span class="service-number">
-                                05
-                            </span>
 
                         </div>
 
@@ -742,7 +750,7 @@
                             rel="noopener noreferrer"
                         >
                             Discuter de mon site
-                            <i class="bi bi-arrow-right"></i>
+                            <i aria-hidden="true" class="bi bi-arrow-right"></i>
                         </a>
 
                     </article>
@@ -755,12 +763,8 @@
                         <div class="service-card-top">
 
                             <div class="service-icon">
-                                <i class="bi bi-window-stack"></i>
+                                <i aria-hidden="true" class="bi bi-window-stack"></i>
                             </div>
-
-                            <span class="service-number">
-                                06
-                            </span>
 
                         </div>
 
@@ -781,37 +785,37 @@
                             rel="noopener noreferrer"
                         >
                             Présenter mon projet
-                            <i class="bi bi-arrow-right"></i>
+                            <i aria-hidden="true" class="bi bi-arrow-right"></i>
                         </a>
 
                     </article>
 
 
-                    <!-- SERVICE 07 -->
+                    <!-- SERVICE 07 : bandeau sur toute la largeur -->
 
-                    <article class="service-card">
+                    <article class="service-card service-card-wide">
 
                         <div class="service-card-top">
 
                             <div class="service-icon">
-                                <i class="bi bi-lightbulb"></i>
+                                <i aria-hidden="true" class="bi bi-lightbulb"></i>
                             </div>
-
-                            <span class="service-number">
-                                07
-                            </span>
 
                         </div>
 
-                        <h3>
-                            Accompagnement numérique
-                        </h3>
+                        <div class="service-wide-text">
 
-                        <p>
-                            Un accompagnement personnalisé pour
-                            mieux utiliser les outils numériques
-                            et trouver une solution adaptée à votre besoin.
-                        </p>
+                            <h3>
+                                Accompagnement numérique
+                            </h3>
+
+                            <p>
+                                Un accompagnement personnalisé pour
+                                mieux utiliser les outils numériques
+                                et trouver une solution adaptée à votre besoin.
+                            </p>
+
+                        </div>
 
                         <a
                             href="https://wa.me/22656630377?text=Bonjour%20Nova%20DigiHub%2C%20j%27ai%20besoin%20d%27un%20accompagnement%20num%C3%A9rique."
@@ -820,7 +824,7 @@
                             rel="noopener noreferrer"
                         >
                             Expliquer mon besoin
-                            <i class="bi bi-arrow-right"></i>
+                            <i aria-hidden="true" class="bi bi-arrow-right"></i>
                         </a>
 
                     </article>
@@ -839,12 +843,12 @@
 
         <section
             id="pourquoi"
-            class="intro-section"
+            class="why-section"
         >
 
-            <div class="section-container">
+            <div class="section-container why-grid">
 
-                <div class="section-heading centered">
+                <div class="section-heading">
 
                     <span class="section-label">
                         Pourquoi Nova DigiHub ?
@@ -864,78 +868,71 @@
                 </div>
 
 
-                <div class="pillars-preview">
+                <ul class="why-list">
 
+                    <li class="why-item">
 
-                    <article class="pillar-card">
+                        <i aria-hidden="true" class="bi bi-tools"></i>
 
-                        <span class="pillar-number">
-                            01
-                        </span>
+                        <div>
 
-                        <div class="pillar-icon">
-                            <i class="bi bi-tools"></i>
+                            <h3>
+                                Du concret
+                            </h3>
+
+                            <p>
+                                Les formations et services sont orientés
+                                vers des situations pratiques et des
+                                besoins réels.
+                            </p>
+
                         </div>
 
-                        <h3>
-                            Du concret
-                        </h3>
-
-                        <p>
-                            Les formations et services sont orientés
-                            vers des situations pratiques et des
-                            besoins réels.
-                        </p>
-
-                    </article>
+                    </li>
 
 
-                    <article class="pillar-card">
+                    <li class="why-item">
 
-                        <span class="pillar-number">
-                            02
-                        </span>
+                        <i aria-hidden="true" class="bi bi-people"></i>
 
-                        <div class="pillar-icon">
-                            <i class="bi bi-people"></i>
+                        <div>
+
+                            <h3>
+                                Un accompagnement humain
+                            </h3>
+
+                            <p>
+                                Chaque personne peut avancer à son rythme
+                                avec une approche simple, accessible
+                                et compréhensible.
+                            </p>
+
                         </div>
 
-                        <h3>
-                            Un accompagnement humain
-                        </h3>
-
-                        <p>
-                            Chaque personne peut avancer à son rythme
-                            avec une approche simple, accessible
-                            et compréhensible.
-                        </p>
-
-                    </article>
+                    </li>
 
 
-                    <article class="pillar-card">
+                    <li class="why-item">
 
-                        <span class="pillar-number">
-                            03
-                        </span>
+                        <i aria-hidden="true" class="bi bi-graph-up-arrow"></i>
 
-                        <div class="pillar-icon">
-                            <i class="bi bi-graph-up-arrow"></i>
+                        <div>
+
+                            <h3>
+                                Une vision plus large
+                            </h3>
+
+                            <p>
+                                À terme, Nova DigiHub ambitionne de devenir
+                                un espace local de formation, de services
+                                et de création numérique.
+                            </p>
+
                         </div>
 
-                        <h3>
-                            Une vision plus large
-                        </h3>
+                    </li>
 
-                        <p>
-                            À terme, Nova DigiHub ambitionne de devenir
-                            un espace local de formation, de services
-                            et de création numérique.
-                        </p>
-
-                    </article>
-
-                </div>
+                </ul>
 
             </div>
 
@@ -947,7 +944,7 @@
              COMMENT ÇA MARCHE
         ====================================================== -->
 
-        <section class="services-section">
+        <section id="etapes" class="services-section">
 
             <div class="section-container">
 
@@ -965,15 +962,15 @@
                 </div>
 
 
-                <div class="services-grid">
+                <ol class="services-grid steps-list">
 
 
-                    <article class="service-card">
+                    <li class="service-card">
 
                         <div class="service-card-top">
 
                             <div class="service-icon">
-                                <i class="bi bi-chat-dots"></i>
+                                <i aria-hidden="true" class="bi bi-chat-dots"></i>
                             </div>
 
                             <span class="service-number">
@@ -992,15 +989,15 @@
                             d'un échange.
                         </p>
 
-                    </article>
+                    </li>
 
 
-                    <article class="service-card">
+                    <li class="service-card">
 
                         <div class="service-card-top">
 
                             <div class="service-icon">
-                                <i class="bi bi-chat-square-text"></i>
+                                <i aria-hidden="true" class="bi bi-chat-square-text"></i>
                             </div>
 
                             <span class="service-number">
@@ -1019,15 +1016,15 @@
                             et vos contraintes.
                         </p>
 
-                    </article>
+                    </li>
 
 
-                    <article class="service-card">
+                    <li class="service-card">
 
                         <div class="service-card-top">
 
                             <div class="service-icon">
-                                <i class="bi bi-search"></i>
+                                <i aria-hidden="true" class="bi bi-search"></i>
                             </div>
 
                             <span class="service-number">
@@ -1046,15 +1043,15 @@
                             le mieux à votre besoin.
                         </p>
 
-                    </article>
+                    </li>
 
 
-                    <article class="service-card">
+                    <li class="service-card">
 
                         <div class="service-card-top">
 
                             <div class="service-icon">
-                                <i class="bi bi-arrow-up-right-circle"></i>
+                                <i aria-hidden="true" class="bi bi-arrow-up-right-circle"></i>
                             </div>
 
                             <span class="service-number">
@@ -1074,9 +1071,9 @@
                             formateur moyennant les conditions convenues.
                         </p>
 
-                    </article>
+                    </li>
 
-                </div>
+                </ol>
 
             </div>
 
@@ -1122,14 +1119,10 @@
                     <article class="formation-card">
 
                         <div class="formation-icon">
-                            <i class="bi bi-pc-display"></i>
+                            <i aria-hidden="true" class="bi bi-pc-display"></i>
                         </div>
 
                         <div class="formation-content">
-
-                            <span class="formation-category">
-                                FORMATION 01
-                            </span>
 
                             <h3>
                                 Informatique & bureautique
@@ -1151,10 +1144,6 @@
 
                         </div>
 
-                        <span class="formation-number">
-                            01
-                        </span>
-
                     </article>
 
 
@@ -1163,14 +1152,10 @@
                     <article class="formation-card">
 
                         <div class="formation-icon">
-                            <i class="bi bi-palette"></i>
+                            <i aria-hidden="true" class="bi bi-palette"></i>
                         </div>
 
                         <div class="formation-content">
-
-                            <span class="formation-category">
-                                FORMATION 02
-                            </span>
 
                             <h3>
                                 Design graphique
@@ -1192,10 +1177,6 @@
 
                         </div>
 
-                        <span class="formation-number">
-                            02
-                        </span>
-
                     </article>
 
 
@@ -1204,14 +1185,10 @@
                     <article class="formation-card">
 
                         <div class="formation-icon">
-                            <i class="bi bi-code-slash"></i>
+                            <i aria-hidden="true" class="bi bi-code-slash"></i>
                         </div>
 
                         <div class="formation-content">
-
-                            <span class="formation-category">
-                                FORMATION 03
-                            </span>
 
                             <h3>
                                 Initiation au web
@@ -1233,10 +1210,6 @@
 
                         </div>
 
-                        <span class="formation-number">
-                            03
-                        </span>
-
                     </article>
 
 
@@ -1245,14 +1218,10 @@
                     <article class="formation-card">
 
                         <div class="formation-icon">
-                            <i class="bi bi-phone"></i>
+                            <i aria-hidden="true" class="bi bi-phone"></i>
                         </div>
 
                         <div class="formation-content">
-
-                            <span class="formation-category">
-                                FORMATION 04
-                            </span>
 
                             <h3>
                                 Outils numériques
@@ -1274,10 +1243,6 @@
 
                         </div>
 
-                        <span class="formation-number">
-                            04
-                        </span>
-
                     </article>
 
 
@@ -1286,14 +1251,10 @@
                     <article class="formation-card">
 
                         <div class="formation-icon">
-                            <i class="bi bi-briefcase"></i>
+                            <i aria-hidden="true" class="bi bi-briefcase"></i>
                         </div>
 
                         <div class="formation-content">
-
-                            <span class="formation-category">
-                                FORMATION 05
-                            </span>
 
                             <h3>
                                 Emploi & professionnalisation
@@ -1315,10 +1276,6 @@
 
                         </div>
 
-                        <span class="formation-number">
-                            05
-                        </span>
-
                     </article>
 
 
@@ -1327,14 +1284,10 @@
                     <article class="formation-card">
 
                         <div class="formation-icon">
-                            <i class="bi bi-rocket-takeoff"></i>
+                            <i aria-hidden="true" class="bi bi-rocket-takeoff"></i>
                         </div>
 
                         <div class="formation-content">
-
-                            <span class="formation-category">
-                                FORMATION 06
-                            </span>
 
                             <h3>
                                 Entrepreneuriat digital
@@ -1355,10 +1308,6 @@
                             </div>
 
                         </div>
-
-                        <span class="formation-number">
-                            06
-                        </span>
 
                     </article>
 
@@ -1403,7 +1352,7 @@
                         <div class="upcoming-item">
 
                             <div class="upcoming-number">
-                                01
+                                <i aria-hidden="true" class="bi bi-pc-display"></i>
                             </div>
 
                             <div class="upcoming-content">
@@ -1437,7 +1386,7 @@
                         <div class="upcoming-item">
 
                             <div class="upcoming-number">
-                                02
+                                <i aria-hidden="true" class="bi bi-palette"></i>
                             </div>
 
                             <div class="upcoming-content">
@@ -1471,7 +1420,7 @@
                         <div class="upcoming-item">
 
                             <div class="upcoming-number">
-                                03
+                                <i aria-hidden="true" class="bi bi-table"></i>
                             </div>
 
                             <div class="upcoming-content">
@@ -1505,7 +1454,7 @@
                         <div class="upcoming-item">
 
                             <div class="upcoming-number">
-                                04
+                                <i aria-hidden="true" class="bi bi-globe2"></i>
                             </div>
 
                             <div class="upcoming-content">
@@ -1539,7 +1488,7 @@
                         <div class="upcoming-item">
 
                             <div class="upcoming-number">
-                                05
+                                <i aria-hidden="true" class="bi bi-phone"></i>
                             </div>
 
                             <div class="upcoming-content">
@@ -1589,7 +1538,7 @@
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <i class="bi bi-whatsapp"></i>
+                            <i aria-hidden="true" class="bi bi-whatsapp"></i>
                             Je veux être informé(e)
                         </a>
 
@@ -1598,40 +1547,6 @@
                 </div>
 
 
-
-                <!-- CTA FORMATIONS -->
-
-                <div class="formations-cta">
-
-                    <div class="formations-cta-content">
-
-                        <span class="formations-cta-label">
-                            FORMATIONS À VENIR
-                        </span>
-
-                        <h3>
-                            Une compétence à développer ?
-                        </h3>
-
-                        <p>
-                            Les programmes évolueront progressivement
-                            selon les besoins des apprenants.
-                            Contactez-nous pour être informé(e).
-                        </p>
-
-                    </div>
-
-                    <a
-                        href="https://wa.me/22656630377?text=Bonjour%20Nova%20DigiHub%2C%20je%20souhaite%20%C3%AAtre%20inform%C3%A9(e)%20des%20formations%20%C3%A0%20venir."
-                        class="btn btn-primary"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <i class="bi bi-whatsapp"></i>
-                        Être informé(e)
-                    </a>
-
-                </div>
 
             </div>
 
@@ -1680,11 +1595,11 @@
                         <div class="ambition-stat">
 
                             <strong>
-                                01
+                                03
                             </strong>
 
                             <span>
-                                Initiative née à Koudougou
+                                Piliers : apprendre, accompagner, créer
                             </span>
 
                         </div>
@@ -1693,11 +1608,11 @@
                         <div class="ambition-stat">
 
                             <strong>
-                                03
+                                06
                             </strong>
 
                             <span>
-                                Piliers d'action
+                                Domaines de formation
                             </span>
 
                         </div>
@@ -1719,11 +1634,11 @@
                         <div class="ambition-stat">
 
                             <strong>
-                                ∞
+                                04
                             </strong>
 
                             <span>
-                                Possibilités grâce au numérique
+                                Modes d'intervention : en ligne, par appel, en présentiel ou déplacement
                             </span>
 
                         </div>
@@ -1761,7 +1676,7 @@
                         </span>
 
                         <h2>
-                            Une initiative née à Koudougou, tournée vers tout le Burkina Faso,
+                            Née à Koudougou,
                             une ambition tournée vers
                             <span>l'avenir.</span>
                         </h2>
@@ -1795,19 +1710,19 @@
 
                             <div class="about-highlight-icon">
 
-                                <i class="bi bi-geo-alt"></i>
+                                <i aria-hidden="true" class="bi bi-geo-alt"></i>
 
                             </div>
 
                             <div>
 
                                 <strong>
-                                    Une initiative née à Koudougou, tournée vers tout le Burkina Faso
+                                    Ancrage local, portée nationale
                                 </strong>
 
                                 <span>
-                                    Un projet local construit progressivement
-                                    autour du numérique.
+                                    Un projet construit progressivement
+                                    autour du numérique, sur place ou à distance.
                                 </span>
 
                             </div>
@@ -1826,7 +1741,7 @@
 
                             <div class="about-card-icon">
 
-                                <i class="bi bi-eye"></i>
+                                <i aria-hidden="true" class="bi bi-eye"></i>
 
                             </div>
 
@@ -1856,7 +1771,7 @@
 
                             <div class="about-card-icon">
 
-                                <i class="bi bi-bullseye"></i>
+                                <i aria-hidden="true" class="bi bi-bullseye"></i>
 
                             </div>
 
@@ -1926,7 +1841,7 @@
 
                         <div class="founder-icon">
 
-                            <i class="bi bi-code-slash"></i>
+                            <i aria-hidden="true" class="bi bi-code-slash"></i>
 
                         </div>
 
@@ -1935,7 +1850,7 @@
 
                             <div>
 
-                                <i class="bi bi-check2-circle"></i>
+                                <i aria-hidden="true" class="bi bi-check2-circle"></i>
 
                                 <span>
                                     Ingénieure en programmation
@@ -1946,7 +1861,7 @@
 
                             <div>
 
-                                <i class="bi bi-check2-circle"></i>
+                                <i aria-hidden="true" class="bi bi-check2-circle"></i>
 
                                 <span>
                                     Développement web & mobile
@@ -1957,7 +1872,7 @@
 
                             <div>
 
-                                <i class="bi bi-check2-circle"></i>
+                                <i aria-hidden="true" class="bi bi-check2-circle"></i>
 
                                 <span>
                                     UI / conception numérique
@@ -1980,7 +1895,7 @@
 
                     <div class="about-principle">
 
-                        <i class="bi bi-tools"></i>
+                        <i aria-hidden="true" class="bi bi-tools"></i>
 
                         <div>
 
@@ -1999,7 +1914,7 @@
 
                     <div class="about-principle">
 
-                        <i class="bi bi-geo-alt"></i>
+                        <i aria-hidden="true" class="bi bi-geo-alt"></i>
 
                         <div>
 
@@ -2018,7 +1933,7 @@
 
                     <div class="about-principle">
 
-                        <i class="bi bi-arrow-repeat"></i>
+                        <i aria-hidden="true" class="bi bi-arrow-repeat"></i>
 
                         <div>
 
@@ -2037,7 +1952,7 @@
 
                     <div class="about-principle">
 
-                        <i class="bi bi-stars"></i>
+                        <i aria-hidden="true" class="bi bi-stars"></i>
 
                         <div>
 
@@ -2067,7 +1982,7 @@
 
         <section
             id="faq"
-            class="formations-section"
+            class="faq-section"
         >
 
             <div class="section-container">
@@ -2086,117 +2001,62 @@
                 </div>
 
 
-                <div class="formations-grid">
+                <div class="faq-list">
+
+                    <details class="faq-item" open>
+
+                        <summary>
+                            À qui s'adresse Nova DigiHub ?
+                            <i aria-hidden="true" class="bi bi-plus-lg"></i>
+                        </summary>
+
+                        <p>
+                            Aux jeunes, particuliers, étudiants, chercheurs d'emploi et petites entreprises qui souhaitent apprendre ou résoudre un besoin numérique.
+                        </p>
+
+                    </details>
 
 
-                    <article class="formation-card">
+                    <details class="faq-item">
 
-                        <div class="formation-icon">
-                            <i class="bi bi-people"></i>
-                        </div>
+                        <summary>
+                            Les formations sont-elles déjà ouvertes ?
+                            <i aria-hidden="true" class="bi bi-plus-lg"></i>
+                        </summary>
 
-                        <div class="formation-content">
+                        <p>
+                            Les programmes sont en préparation. Les prochaines sessions seront annoncées progressivement et pourront être organisées en ligne, par appel ou, lorsque cela sera possible, en présentiel.
+                        </p>
 
-                            <span class="formation-category">
-                                QUESTION 01
-                            </span>
-
-                            <h3>
-                                À qui s'adresse Nova DigiHub ?
-                            </h3>
-
-                            <p>
-                                Aux jeunes, particuliers, étudiants,
-                                chercheurs d'emploi et petites entreprises
-                                qui souhaitent apprendre ou résoudre
-                                un besoin numérique.
-                            </p>
-
-                        </div>
-
-                    </article>
+                    </details>
 
 
-                    <article class="formation-card">
+                    <details class="faq-item">
 
-                        <div class="formation-icon">
-                            <i class="bi bi-calendar-event"></i>
-                        </div>
+                        <summary>
+                            Puis-je demander une solution personnalisée ?
+                            <i aria-hidden="true" class="bi bi-plus-lg"></i>
+                        </summary>
 
-                        <div class="formation-content">
+                        <p>
+                            Oui. Vous pouvez présenter votre besoin afin que nous puissions échanger sur une solution adaptée.
+                        </p>
 
-                            <span class="formation-category">
-                                QUESTION 02
-                            </span>
-
-                            <h3>
-                                Les formations sont-elles déjà ouvertes ?
-                            </h3>
-
-                            <p>
-                                Les programmes sont en préparation. Les prochaines sessions seront
-                                annoncées progressivement et pourront être organisées
-                                en ligne, à distance ou, lorsque cela sera possible,
-                                en présentiel.
-                            </p>
-
-                        </div>
-
-                    </article>
+                    </details>
 
 
-                    <article class="formation-card">
+                    <details class="faq-item">
 
-                        <div class="formation-icon">
-                            <i class="bi bi-chat-square-dots"></i>
-                        </div>
+                        <summary>
+                            Mon besoin n'est pas dans la liste ?
+                            <i aria-hidden="true" class="bi bi-plus-lg"></i>
+                        </summary>
 
-                        <div class="formation-content">
+                        <p>
+                            Contactez-nous. Nous pouvons échanger sur votre besoin et voir comment le numérique peut vous aider.
+                        </p>
 
-                            <span class="formation-category">
-                                QUESTION 03
-                            </span>
-
-                            <h3>
-                                Puis-je demander une solution personnalisée ?
-                            </h3>
-
-                            <p>
-                                Oui. Vous pouvez présenter votre besoin
-                                afin que nous puissions échanger sur
-                                une solution adaptée.
-                            </p>
-
-                        </div>
-
-                    </article>
-
-
-                    <article class="formation-card">
-
-                        <div class="formation-icon">
-                            <i class="bi bi-question-circle"></i>
-                        </div>
-
-                        <div class="formation-content">
-
-                            <span class="formation-category">
-                                QUESTION 04
-                            </span>
-
-                            <h3>
-                                Mon besoin n'est pas dans la liste ?
-                            </h3>
-
-                            <p>
-                                Contactez-nous. Nous pouvons échanger
-                                sur votre besoin et voir comment
-                                le numérique peut vous aider.
-                            </p>
-
-                        </div>
-
-                    </article>
+                    </details>
 
                 </div>
 
@@ -2246,7 +2106,7 @@
 
                                 <div class="contact-point-icon">
 
-                                    <i class="bi bi-whatsapp"></i>
+                                    <i aria-hidden="true" class="bi bi-whatsapp"></i>
 
                                 </div>
 
@@ -2256,9 +2116,13 @@
                                         WhatsApp
                                     </strong>
 
-                                    <span>
+                                    <a
+                                        href="https://wa.me/22656630377"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
                                         +226 56 63 03 77
-                                    </span>
+                                    </a>
 
                                 </div>
 
@@ -2269,7 +2133,7 @@
 
                                 <div class="contact-point-icon">
 
-                                    <i class="bi bi-geo-alt"></i>
+                                    <i aria-hidden="true" class="bi bi-geo-alt"></i>
 
                                 </div>
 
@@ -2292,7 +2156,7 @@
 
                                 <div class="contact-point-icon">
 
-                                    <i class="bi bi-lightbulb"></i>
+                                    <i aria-hidden="true" class="bi bi-lightbulb"></i>
 
                                 </div>
 
@@ -2303,7 +2167,7 @@
                                     </strong>
 
                                     <span>
-                                        Ville d'ancrage du projet, avec une implantation physique envisagée à terme
+                                        Formation, service ou projet : expliquez-le simplement
                                     </span>
 
                                 </div>
@@ -2321,7 +2185,7 @@
 
                             <div class="contact-card-icon">
 
-                                <i class="bi bi-whatsapp"></i>
+                                <i aria-hidden="true" class="bi bi-whatsapp"></i>
 
                             </div>
 
@@ -2350,7 +2214,7 @@
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            <i class="bi bi-whatsapp"></i>
+                            <i aria-hidden="true" class="bi bi-whatsapp"></i>
                             Écrire sur WhatsApp
                         </a>
 
@@ -2369,63 +2233,6 @@
 
 
 
-        <!-- =====================================================
-             FINAL CTA
-        ====================================================== -->
-
-        <section class="final-cta-section">
-
-            <div class="section-container">
-
-                <div class="final-cta">
-
-                    <div>
-
-                        <span class="section-label">
-                            NOVA DIGIHUB
-                        </span>
-
-                        <h2>
-                            Apprendre aujourd'hui,
-                            <span>réussir demain.</span>
-                        </h2>
-
-                        <p>
-                            Le numérique à votre portée.
-                        </p>
-
-                    </div>
-
-
-                    <div class="final-cta-actions">
-
-                        <a
-                            href="https://wa.me/22656630377?text=Bonjour%20Nova%20DigiHub%2C%20je%20souhaite%20prendre%20contact%20avec%20vous."
-                            class="btn btn-primary"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            <i class="bi bi-whatsapp"></i>
-                            Nous contacter
-                        </a>
-
-
-                        <a
-                            href="#services"
-                            class="btn btn-secondary"
-                        >
-                            Voir les services
-                            <i class="bi bi-arrow-right"></i>
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
     </main>
 
 
@@ -2442,7 +2249,7 @@
         aria-label="Contacter Nova DigiHub sur WhatsApp"
     >
 
-        <i class="bi bi-whatsapp"></i>
+        <i aria-hidden="true" class="bi bi-whatsapp"></i>
 
         <span>
             WhatsApp
@@ -2469,6 +2276,9 @@
                         src="images/logo.png"
                         alt="Nova DigiHub"
                         class="footer-logo"
+                        width="82"
+                        height="82"
+                        loading="lazy"
                     >
 
                     <p>
@@ -2478,7 +2288,7 @@
 
                     <span class="footer-location">
 
-                        <i class="bi bi-geo-alt"></i>
+                        <i aria-hidden="true" class="bi bi-geo-alt"></i>
 
                         Burkina Faso — Projet initié à Koudougou
 
@@ -2492,9 +2302,9 @@
 
                     <div class="footer-column">
 
-                        <h4>
+                        <h2 class="footer-title">
                             Navigation
-                        </h4>
+                        </h2>
 
                         <a href="#accueil">
                             Accueil
@@ -2517,12 +2327,16 @@
 
                     <div class="footer-column">
 
-                        <h4>
+                        <h2 class="footer-title">
                             Découvrir
-                        </h4>
+                        </h2>
 
                         <a href="#pourquoi">
                             Pourquoi nous
+                        </a>
+
+                        <a href="#etapes">
+                            Comment ça marche
                         </a>
 
                         <a href="#faq">
@@ -2535,6 +2349,25 @@
 
                     </div>
 
+
+                    <div class="footer-column">
+
+                        <h2 class="footer-title">
+                            Nous écrire
+                        </h2>
+
+                        <a
+                            href="https://wa.me/22656630377?text=Bonjour%20Nova%20DigiHub%2C%20je%20souhaite%20prendre%20contact%20avec%20vous."
+                            class="footer-whatsapp"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <i aria-hidden="true" class="bi bi-whatsapp"></i>
+                            +226 56 63 03 77
+                        </a>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -2543,7 +2376,7 @@
             <div class="footer-bottom">
 
                 <p>
-                    © 2026 Nova DigiHub. Tous droits réservés.
+                    © <span id="current-year">2026</span> Nova DigiHub. Tous droits réservés.
                 </p>
 
                 <p>
@@ -2556,9 +2389,6 @@
 
     </footer>
 
-
-    <!-- Main JS -->
-    <script src="js/script.js"></script>
 
 </body>
 

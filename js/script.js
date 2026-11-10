@@ -5,6 +5,10 @@
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+    );
+
 
     /* ========================================================
        1. MOBILE MENU
@@ -13,469 +17,212 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuToggle = document.querySelector(".menu-toggle");
     const navMenu = document.querySelector(".nav-menu");
 
-
     if (menuToggle && navMenu) {
 
-        const closeMenu = () => {
+        const setMenuState = (isOpen) => {
 
-            navMenu.classList.remove("active");
+            navMenu.classList.toggle("active", isOpen);
 
-            menuToggle.setAttribute(
-                "aria-expanded",
-                "false"
-            );
+            menuToggle.setAttribute("aria-expanded", String(isOpen));
 
             menuToggle.setAttribute(
                 "aria-label",
-                "Ouvrir le menu"
+                isOpen ? "Fermer le menu" : "Ouvrir le menu"
             );
 
-            menuToggle.innerHTML =
-                '<i class="bi bi-list"></i>';
+            menuToggle.innerHTML = isOpen
+                ? '<i class="bi bi-x-lg" aria-hidden="true"></i>'
+                : '<i class="bi bi-list" aria-hidden="true"></i>';
         };
+
+        const isMenuOpen = () => navMenu.classList.contains("active");
 
 
         menuToggle.addEventListener("click", () => {
-
-            const isOpen =
-                navMenu.classList.toggle("active");
-
-
-            menuToggle.setAttribute(
-                "aria-expanded",
-                isOpen.toString()
-            );
+            setMenuState(!isMenuOpen());
+        });
 
 
-            if (isOpen) {
+        // Fermer le menu après un clic sur un lien
+        navMenu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => setMenuState(false));
+        });
 
-                menuToggle.setAttribute(
-                    "aria-label",
-                    "Fermer le menu"
-                );
 
-                menuToggle.innerHTML =
-                    '<i class="bi bi-x-lg"></i>';
+        // Fermer avec Échap et rendre le focus au bouton
+        document.addEventListener("keydown", (event) => {
 
-            } else {
-
-                menuToggle.setAttribute(
-                    "aria-label",
-                    "Ouvrir le menu"
-                );
-
-                menuToggle.innerHTML =
-                    '<i class="bi bi-list"></i>';
+            if (event.key === "Escape" && isMenuOpen()) {
+                setMenuState(false);
+                menuToggle.focus();
             }
-
         });
 
 
-        const navLinks =
-            document.querySelectorAll(".nav-menu a");
+        // Fermer en cliquant en dehors du menu
+        document.addEventListener("click", (event) => {
 
-
-        navLinks.forEach((link) => {
-
-            link.addEventListener("click", () => {
-
-                closeMenu();
-
-            });
-
+            if (
+                isMenuOpen() &&
+                !navMenu.contains(event.target) &&
+                !menuToggle.contains(event.target)
+            ) {
+                setMenuState(false);
+            }
         });
 
 
-        document.addEventListener(
-            "keydown",
+        // Fermer si l'écran repasse en version ordinateur
+        window.matchMedia("(min-width: 851px)").addEventListener(
+            "change",
             (event) => {
-
-                if (event.key === "Escape") {
-
-                    closeMenu();
-
+                if (event.matches) {
+                    setMenuState(false);
                 }
-
             }
         );
-
-
-        window.addEventListener(
-            "resize",
-            () => {
-
-                if (window.innerWidth > 850) {
-
-                    closeMenu();
-
-                }
-
-            }
-        );
-
     }
 
 
-
     /* ========================================================
-       2. ACTIVE NAVIGATION LINK
+       2. LIEN ACTIF DANS LE MENU
+       (IntersectionObserver : plus léger que de recalculer
+       la position des sections à chaque défilement)
     ========================================================= */
 
-    const sections =
-        document.querySelectorAll(
-            "main section[id]"
-        );
+    const navigationLinks = document.querySelectorAll(".nav-link");
 
-
-    const navigationLinks =
-        document.querySelectorAll(
-            ".nav-link"
-        );
-
-
-    const updateActiveLink = () => {
-
-        let currentSection = "";
-
-
-        sections.forEach((section) => {
-
-            const sectionTop =
-                section.offsetTop - 180;
-
-            const sectionHeight =
-                section.offsetHeight;
-
-
-            if (
-                window.scrollY >= sectionTop &&
-                window.scrollY <
-                    sectionTop + sectionHeight
-            ) {
-
-                currentSection =
-                    section.getAttribute("id");
-
-            }
-
-        });
-
+    const setActiveLink = (id) => {
 
         navigationLinks.forEach((link) => {
 
-            link.classList.remove("active");
+            const isActive = link.getAttribute("href") === `#${id}`;
 
+            link.classList.toggle("active", isActive);
 
-            if (
-                link.getAttribute("href") ===
-                `#${currentSection}`
-            ) {
-
-                link.classList.add("active");
-
+            if (isActive) {
+                link.setAttribute("aria-current", "true");
+            } else {
+                link.removeAttribute("aria-current");
             }
-
         });
-
     };
 
+    const linkedSections = [...navigationLinks]
+        .map((link) => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
 
-    window.addEventListener(
-        "scroll",
-        updateActiveLink,
-        { passive: true }
-    );
+    if ("IntersectionObserver" in window && linkedSections.length) {
 
+        const sectionObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        setActiveLink(entry.target.id);
+                    }
+                });
+            },
+            {
+                // Une section devient "active" quand elle passe
+                // dans la zone située juste sous le menu
+                rootMargin: "-35% 0px -60% 0px"
+            }
+        );
 
-    updateActiveLink();
-
+        linkedSections.forEach((section) => sectionObserver.observe(section));
+    }
 
 
     /* ========================================================
-       3. HEADER SCROLL EFFECT
+       3. EFFET DU HEADER AU DÉFILEMENT
     ========================================================= */
 
-    const header =
-        document.querySelector(".site-header");
+    const header = document.querySelector(".site-header");
 
+    if (header) {
 
-    const updateHeader = () => {
+        const updateHeader = () => {
+            header.classList.toggle("scrolled", window.scrollY > 40);
+        };
 
-        if (!header) {
-            return;
-        }
+        window.addEventListener("scroll", updateHeader, { passive: true });
 
-
-        if (window.scrollY > 40) {
-
-            header.classList.add("scrolled");
-
-        } else {
-
-            header.classList.remove("scrolled");
-
-        }
-
-    };
-
-
-    window.addEventListener(
-        "scroll",
-        updateHeader,
-        { passive: true }
-    );
-
-
-    updateHeader();
-
+        updateHeader();
+    }
 
 
     /* ========================================================
-       4. REVEAL ANIMATIONS
+       4. ANIMATIONS D'APPARITION
+       Une fois l'animation terminée, les classes "reveal" et
+       "visible" sont retirées : sinon elles écrasent les effets
+       de survol des cartes (transform et transition).
     ========================================================= */
 
-    const prefersReducedMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        );
-
-
-    const revealElements =
-        document.querySelectorAll(
-            ".pillar-card, " +
-            ".section-heading, " +
-            ".service-card, " +
-            ".formation-card, " +
-            ".about-content, " +
-            ".about-card, " +
-            ".about-principle, " +
-            ".contact-content, " +
-            ".contact-card, " +
-            ".upcoming-formations, " +
-            ".upcoming-item, " +
-            ".ambition-card, " +
-            ".founder-section, " +
-            ".final-cta"
-        );
-
+    const revealElements = document.querySelectorAll(
+        ".pillar-card, " +
+        ".section-heading, " +
+        ".service-card, " +
+        ".formation-card, " +
+        ".faq-item, " +
+        ".about-content, " +
+        ".about-card, " +
+        ".about-principle, " +
+        ".contact-content, " +
+        ".contact-card, " +
+        ".upcoming-formations, " +
+        ".upcoming-item, " +
+        ".ambition-card, " +
+        ".founder-section, " +
+        ".why-item"
+    );
 
     if (
         "IntersectionObserver" in window &&
         !prefersReducedMotion.matches
     ) {
 
-        const observer =
-            new IntersectionObserver(
-                (entries, observer) => {
+        const revealObserver = new IntersectionObserver(
+            (entries, observer) => {
 
-                    entries.forEach((entry) => {
+                entries.forEach((entry) => {
 
-                        if (
-                            entry.isIntersecting
-                        ) {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
 
-                            entry.target.classList.add(
-                                "visible"
-                            );
+                    const element = entry.target;
 
-                            observer.unobserve(
-                                entry.target
-                            );
+                    element.classList.add("visible");
 
-                        }
-
-                    });
-
-                },
-                {
-                    threshold: 0.12
-                }
-            );
-
-
-        revealElements.forEach((element) => {
-
-            element.classList.add("reveal");
-
-            observer.observe(element);
-
-        });
-
-    } else {
-
-        revealElements.forEach((element) => {
-
-            element.classList.add("visible");
-
-        });
-
-    }
-
-
-
-    /* ========================================================
-       5. FOOTER YEAR
-    ========================================================= */
-
-    const footerYear =
-        document.querySelector(
-            ".footer-bottom p"
-        );
-
-
-    if (footerYear) {
-
-        footerYear.textContent =
-            `© ${new Date().getFullYear()} Nova DigiHub. Tous droits réservés.`;
-
-    }
-
-
-
-    /* ========================================================
-       6. SMOOTH INTERNAL LINKS
-    ========================================================= */
-
-    const internalLinks =
-        document.querySelectorAll(
-            'a[href^="#"]'
-        );
-
-
-    internalLinks.forEach((link) => {
-
-        link.addEventListener(
-            "click",
-            (event) => {
-
-                const targetId =
-                    link.getAttribute("href");
-
-
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) {
-
-                    return;
-
-                }
-
-
-                const targetElement =
-                    document.querySelector(
-                        targetId
+                    element.addEventListener(
+                        "transitionend",
+                        () => element.classList.remove("reveal", "visible"),
+                        { once: true }
                     );
 
-
-                if (!targetElement) {
-
-                    return;
-
-                }
-
-
-                event.preventDefault();
-
-
-                targetElement.scrollIntoView({
-                    behavior:
-                        prefersReducedMotion.matches
-                            ? "auto"
-                            : "smooth",
-
-                    block: "start"
+                    observer.unobserve(element);
                 });
-
+            },
+            {
+                threshold: 0.12
             }
         );
 
-    });
-
-
-
-    /* ========================================================
-       7. FLOATING WHATSAPP
-    ========================================================= */
-
-    const floatingWhatsapp =
-        document.querySelector(
-            ".floating-whatsapp"
-        );
-
-
-    if (floatingWhatsapp) {
-
-        const updateWhatsappVisibility = () => {
-
-            if (window.scrollY > 350) {
-
-                floatingWhatsapp.classList.add(
-                    "visible"
-                );
-
-            } else {
-
-                floatingWhatsapp.classList.remove(
-                    "visible"
-                );
-
-            }
-
-        };
-
-
-        /*
-         * Le bouton reste naturellement visible.
-         * Cette classe permet simplement au CSS/JS
-         * de contrôler son apparition si nécessaire.
-         */
-
-        floatingWhatsapp.classList.add(
-            "visible"
-        );
-
-
-        window.addEventListener(
-            "scroll",
-            updateWhatsappVisibility,
-            { passive: true }
-        );
-
+        revealElements.forEach((element) => {
+            element.classList.add("reveal");
+            revealObserver.observe(element);
+        });
     }
 
 
-
     /* ========================================================
-       8. ACCESSIBILITY — TOUCH / KEYBOARD
+       5. ANNÉE DU FOOTER
     ========================================================= */
 
-    document.addEventListener(
-        "keydown",
-        (event) => {
+    const currentYear = document.getElementById("current-year");
 
-            if (
-                event.key === "Enter" &&
-                document.activeElement
-            ) {
-
-                const activeElement =
-                    document.activeElement;
-
-
-                if (
-                    activeElement.classList.contains(
-                        "floating-whatsapp"
-                    )
-                ) {
-
-                    activeElement.click();
-
-                }
-
-            }
-
-        }
-    );
+    if (currentYear) {
+        currentYear.textContent = new Date().getFullYear();
+    }
 
 });
